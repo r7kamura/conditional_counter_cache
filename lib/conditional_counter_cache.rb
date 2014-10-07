@@ -1,5 +1,6 @@
-require "conditional_counter_cache/version"
+require "active_record"
 
-module ConditionalCounterCache
-  # Your code goes here...
-end
+require "conditional_counter_cache/belongs_to"
+require "conditional_counter_cache/reflection"
+require "conditional_counter_cache/version"
+require "conditional_counter_cache/active_record"

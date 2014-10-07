@@ -1,31 +1,22 @@
 # ConditionalCounterCache
-
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'conditional_counter_cache'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install conditional_counter_cache
+Allows you to customize condition of counter cache.
 
 ## Usage
+Customize condition via `:counter_cache` option:
 
-TODO: Write usage instructions here
+```ruby
+class Tagging < ActiveRecord::Base
+  belongs_to :item
+  belongs_to :tag, counter_cache: { condition: -> { !tagging.item.private? } }
+end
+```
 
-## Contributing
+Other examples:
 
-1. Fork it ( https://github.com/[my-github-username]/conditional_counter_cache/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+```ruby
+belongs_to :tag, counter_cache: true
+belongs_to :tag, counter_cache: "items_count"
+belongs_to :tag, counter_cache: { condition: -> { !tagging.item.private? } }
+belongs_to :tag, counter_cache: { column_name: "items_count" }
+belongs_to :tag, counter_cache: { column_name: "items_count", condition: -> { !tagging.item.private? } }
+```
