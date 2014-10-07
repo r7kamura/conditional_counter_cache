@@ -17,6 +17,7 @@ Other examples:
 belongs_to :tag, counter_cache: true
 belongs_to :tag, counter_cache: "items_count"
 belongs_to :tag, counter_cache: { condition: -> { !tagging.item.private? } }
+belongs_to :tag, counter_cache: { condition: -> :your_favorite_method_name }
 belongs_to :tag, counter_cache: { column_name: "items_count" }
 belongs_to :tag, counter_cache: { column_name: "items_count", condition: -> { !tagging.item.private? } }
 ```
