@@ -1,5 +1,5 @@
 # ConditionalCounterCache
-Allows you to customize condition of counter cache.
+Give condition when to increment/decrement counter cache.
 
 ## Usage
 Customize condition via `:counter_cache` option:
