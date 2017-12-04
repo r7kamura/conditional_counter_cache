@@ -33,10 +33,10 @@ module ConditionalCounterCache
 
           if (@_after_create_counter_called ||= false)
             @_after_create_counter_called = false
-          elsif attribute_changed?(foreign_key) && !new_record? && reflection.constructable?
+          elsif saved_change_to_attribute?(foreign_key) && !new_record? && reflection.constructable?
             return unless reflection.has_countable?(self)
             model           = reflection.klass
-            foreign_key_was = attribute_was foreign_key
+            foreign_key_was = attribute_before_last_save foreign_key
             foreign_key     = attribute foreign_key
 
             if foreign_key && model.respond_to?(:increment_counter)
